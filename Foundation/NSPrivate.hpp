@@ -98,6 +98,7 @@ namespace Private
         _NS_PRIVATE_DEF_CLS(NSAutoreleasePool);
         _NS_PRIVATE_DEF_CLS(NSBundle);
         _NS_PRIVATE_DEF_CLS(NSCondition);
+        _NS_PRIVATE_DEF_CLS(NSData);
         _NS_PRIVATE_DEF_CLS(NSDate);
         _NS_PRIVATE_DEF_CLS(NSDictionary);
         _NS_PRIVATE_DEF_CLS(NSError);
@@ -105,6 +106,7 @@ namespace Private
         _NS_PRIVATE_DEF_CLS(NSNumber);
         _NS_PRIVATE_DEF_CLS(NSObject);
         _NS_PRIVATE_DEF_CLS(NSProcessInfo);
+        _NS_PRIVATE_DEF_CLS(NSRunLoop);
         _NS_PRIVATE_DEF_CLS(NSSet);
         _NS_PRIVATE_DEF_CLS(NSString);
         _NS_PRIVATE_DEF_CLS(NSURL);
@@ -524,6 +526,22 @@ namespace Private
             "wait");
         _NS_PRIVATE_DEF_SEL(waitUntilDate_,
             "waitUntilDate:");
+        _NS_PRIVATE_DEF_SEL(distantFuture,
+            "distantFuture");
+        _NS_PRIVATE_DEF_SEL(mutableBytes,
+            "mutableBytes");
+        _NS_PRIVATE_DEF_SEL(dataWithContentsOfURL_,
+            "dataWithContentsOfURL:");
+        _NS_PRIVATE_DEF_SEL(dataWithContentsOfFile_,
+            "dataWithContentsOfFile:");
+        _NS_PRIVATE_DEF_SEL(dataWithBytes_length_,
+            "dataWithBytes:length:");
+        _NS_PRIVATE_DEF_SEL(currentRunLoop,
+                            "currentRunLoop");
+        _NS_PRIVATE_DEF_SEL(mainRunLoop,
+                            "mainRunLoop");
+        _NS_PRIVATE_DEF_SEL(runMode_beforeDate_,
+            "runMode:beforeDate:");
     } // Class
 } // Private
 } // MTL

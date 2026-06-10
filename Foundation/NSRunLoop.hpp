@@ -1,8 +1,8 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 //
-// Foundation/NSDate.hpp
+// Foundation/NSRunLoop.hpp
 //
-// Copyright 2020-2024 Apple Inc.
+// Copyright 2020-2023 Apple Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,42 +18,55 @@
 //
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 #pragma once
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#include "NSDefines.hpp"
 #include "NSObject.hpp"
-#include "NSPrivate.hpp"
 #include "NSTypes.hpp"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 namespace NS
 {
+    using RunLoopMode = class String*;
+    
+    _NS_CONST(RunLoopMode, RunLoopCommonModes);
+    _NS_CONST(RunLoopMode, DefaultRunLoopMode);
+    //_NS_CONST(RunLoopMode, EventTrackingRunLoopMode);
+    //_NS_CONST(RunLoopMode, ModalPanelRunLoopMode);
+    
+    
+    class RunLoop : public NS::Referencing<RunLoop>
+    {
+    public:
+        static RunLoop* currentRunLoop();
+        static RunLoop* mainRunLoop();
 
-using TimeInterval = double;
+        bool run(NS::RunLoopMode mode, NS::Date* date);
+    };
+}
 
-class Date : public Copying<Date>
-{
-public:
-    static Date* dateWithTimeIntervalSinceNow(TimeInterval secs);
-    static Date* distantFuture();
-};
-
-} // NS
+_NS_PRIVATE_DEF_CONST(NS::RunLoopMode, RunLoopCommonModes);
+_NS_PRIVATE_DEF_CONST(NS::RunLoopMode, DefaultRunLoopMode);
+//_NS_PRIVATE_DEF_CONST(NS::RunLoopMode, EventTrackingRunLoopMode);
+//_NS_PRIVATE_DEF_CONST(NS::RunLoopMode, ModalPanelRunLoopMode);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-_NS_INLINE NS::Date* NS::Date::dateWithTimeIntervalSinceNow(NS::TimeInterval secs)
+_NS_INLINE NS::RunLoop* NS::RunLoop::currentRunLoop()
 {
-    return NS::Object::sendMessage<NS::Date*>(_NS_PRIVATE_CLS(NSDate), _NS_PRIVATE_SEL(dateWithTimeIntervalSinceNow_), secs);
+    return Object::sendMessage<RunLoop*>(_NS_PRIVATE_CLS(NSRunLoop), _NS_PRIVATE_SEL(currentRunLoop));
 }
 
-_NS_INLINE NS::Date* NS::Date::distantFuture()
+_NS_INLINE NS::RunLoop* NS::RunLoop::mainRunLoop()
 {
-    return NS::Object::sendMessage<NS::Date*>(_NS_PRIVATE_CLS(NSDate), _NS_PRIVATE_SEL(distantFuture));
+    return Object::sendMessage<RunLoop*>(_NS_PRIVATE_CLS(NSRunLoop), _NS_PRIVATE_SEL(mainRunLoop));
+}
+
+_NS_INLINE bool NS::RunLoop::run(NS::RunLoopMode mode, NS::Date* date)
+{
+    return Object::sendMessage<bool>(this, _NS_PRIVATE_SEL(runMode_beforeDate_), mode, date);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

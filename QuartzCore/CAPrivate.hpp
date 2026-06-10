@@ -76,6 +76,7 @@ namespace Private
     namespace Class
     {
         _CA_PRIVATE_DEF_CLS(CAMetalLayer);
+        _CA_PRIVATE_DEF_CLS(CAMetalDisplayLink);
     } // Class
 } // Private
 } // CA
@@ -90,6 +91,7 @@ namespace Private
     {
 
         _CA_PRIVATE_DEF_PRO(CAMetalDrawable);
+        _CA_PRIVATE_DEF_PRO(CAMetalDisplayLinkDelegate);
 
     } // Protocol
 } // Private
@@ -147,6 +149,20 @@ namespace Private
             "texture");
         _CA_PRIVATE_DEF_SEL(wantsExtendedDynamicRangeContent,
             "wantsExtendedDynamicRangeContent");
+        _CA_PRIVATE_DEF_SEL(drawable,
+                            "drawable");
+        _CA_PRIVATE_DEF_SEL(delegate,
+                            "delegate");
+        _CA_PRIVATE_DEF_SEL(initWithMetalLayer,
+                            "initWithMetalLayer:");
+        _CA_PRIVATE_DEF_SEL(targetPresentationTimestamp, "targetPresentationTimestamp");
+        _CA_PRIVATE_DEF_SEL(targetTimestamp, "targetTimestamp");
+        _CA_PRIVATE_DEF_SEL(addToRunLoop_,
+                            "addToRunLoop:forMode:");
+        _CA_PRIVATE_DEF_SEL(removeFromRunLoop_, "removeFromRunLoop:forMode:");
+        _CA_PRIVATE_DEF_SEL(contentsScale, "contentsScale");
+        _CA_PRIVATE_DEF_SEL(setPreferredFrameLatency_, "setPreferredFrameLatency:");
+        _CA_PRIVATE_DEF_SEL(setPreferredFrameRateRange_, "setPreferredFrameRateRange:");
     } // Class
 } // Private
 } // CA
